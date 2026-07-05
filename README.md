@@ -229,7 +229,7 @@ Contributions are welcome! If you have suggestions for improving the project, fe
 
 **Amiel Vincent De Castro**
 
-- **GitHub:** https://github.com/vinvin-prog
+- **GitHub:** [vinvin-prog](https://github.com/vinvin-prog)
 - **Email:** avdc02@gmail.com
 
-**Project Repository:** https://github.com/vinvin-prog/terminal-library-management-system
+**Project Repository:** [Terminal-Based Library Management System](https://github.com/vinvin-prog/terminal-library-management-system)
