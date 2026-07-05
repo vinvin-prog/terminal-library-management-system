@@ -1,4 +1,4 @@
-# Terminal-Based Library Management System
+# 📚 Terminal-Based Library Management System
 
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![Cryptography](https://img.shields.io/badge/Security-Fernet_Cryptography-black?style=for-the-badge&logo=letsencrypt)
@@ -8,7 +8,7 @@ A robust, secure, and interactive Command Line Interface (CLI) application for m
 
 ---
 
-## Table of Contents
+## 📖 Table of Contents
 
 - [About the Project](#about-the-project)
 - [Built With](#built-with)
@@ -230,6 +230,6 @@ Contributions are welcome! If you have suggestions for improving the project, fe
 **Amiel Vincent De Castro**
 
 - **GitHub:** https://github.com/vinvin-prog
-- **Email:** avdc02@example.com
+- **Email:** avdc02@gmail.com
 
 **Project Repository:** https://github.com/vinvin-prog/terminal-library-management-system
