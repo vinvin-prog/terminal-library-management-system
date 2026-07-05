@@ -30,17 +30,21 @@ def ensure_file_exists(file_name):
             file.write('') # CREATES AN EMPTY FILE
         encryption.encrypt_file(file_name) # ENCCRYPT NEWLY CREATED FILE
 
-    return True
-
 # FUNCITON TO CHECK IF FILE IS EMPTY OR NOT
-def check_file_content(file_name):
-
+def decrypt_on_startup(file_name):
+    # SAFELY ATTEMPTS TO DECRYPT THE FILE AT STARTUP
     try:
         with open(file_name, 'r') as file:
-            return file.read().strip != ""
+            content = file.read().strip()
+        
+        # IF THE FILE HAS CONTENT (meaning it has an encrypted token), DECRYPT IT
+        if content != "":
+            encryption.decrypt_file(file_name)
 
-    except FileNotFoundError:
-        return False
+    except Exception:
+        # IF IT THROWS AN ERROR (like InvalidToken), THE FILE IS ALREADY PLAIN TEXT
+        # THIS HANDLES CASES WHERE PROGRAM FORCEFULLY CLOSES IF ERRORS OCCUR
+        pass
 
 
 def main_interface():
@@ -54,71 +58,53 @@ def main_interface():
     file_logbook = "logbook.txt"
 
     # ENSURE FILES EXISTS
-    library_exist = ensure_file_exists(file_library)
-    borrow_list_exist = ensure_file_exists(file_borrow_list)
-    logbook_exist = ensure_file_exists(file_logbook)
+    ensure_file_exists(file_library)
+    ensure_file_exists(file_borrow_list)
+    ensure_file_exists(file_logbook)
 
     # CHECK FILES CONTENT (EMPTY OR NOT)
-    library_content = check_file_content(file_library)
-    borrow_list_content = check_file_content(file_borrow_list)
-    logbook_content = check_file_content(file_logbook)
+    decrypt_on_startup(file_library)
+    decrypt_on_startup(file_borrow_list)
+    decrypt_on_startup(file_logbook)
 
-    while True:
-        print("\n    Library Inventory and Logging System")
-        print("\t[1] Go to Library")
-        print("\t[2] Borrow Books")
-        print("\t[3] Logbook")
-        print("\t[4] Exit")
-        choice = input("\nEnter option number: ").strip()
+    try:
+        while True:
+            print("\n    Library Inventory and Logging System")
+            print("\t[1] Go to Library")
+            print("\t[2] Borrow Books")
+            print("\t[3] Logbook")
+            print("\t[4] Exit")
+            choice = input("\nEnter option number: ").strip()
 
-        # DECRYPT FILE TO BE USED IN LIBRARY MODULES
-        
-        if choice == "1":
-            try:
-                if library_exist and library_content:
-                    encryption.decrypt_file(file_library)
-
-            except Exception as e:
-                print(f"Error decrypting the file: {e}")
-
-            books.books_module(file_library, file_borrow_list)
-        
-        elif choice == "2":
-            # IF LIBRARY IS CURRENTLY EMPTY, USER CANNOT PROCEED TO BORROW BOOKS
-            library = books.load_books_from_file(file_library)
-
-            if not library:
-                print("\nCannot proceed to borrow books. There are currently no books in the library.")
-
-            else:
-                try:
-                    if borrow_list_exist and borrow_list_content:
-                        encryption.decrypt_file(file_borrow_list)
-                        
-                except Exception as e:
-                    print(f"Error decrypting the file: {e}")
-
-                borrow.borrow_module(file_library, file_borrow_list, file_logbook)
-
-        elif choice == "3":
-            try:
-                if logbook_exist and logbook_content:
-                    encryption.decrypt_file(file_logbook)
+            if choice == "1":
+                # FILES ARE ALREADY DECRYPTED
+                # PASS THEM TO MODULE
+                books.books_module(file_library, file_borrow_list)
             
-            except Exception as e:
-                print(f"Error decrypting the file: {e}")
+            elif choice == "2":
+                # IF LIBRARY IS CURRENTLY EMPTY, USER CANNOT PROCEED TO BORROW BOOKS
+                library = books.load_books_from_file(file_library)
 
-            logbook.logbook_module(file_logbook, file_library)
+                if not library:
+                    print("\nCannot proceed to borrow books. There are currently no books in the library.")
 
-        elif choice == "4":
-            # ENCRYPT FILE AFTER USING
-            encryption.encrypt_file("library.txt")
-            encryption.encrypt_file("borrow_list.txt")
-            encryption.encrypt_file("logbook.txt")
+                else:
+                    borrow.borrow_module(file_library, file_borrow_list, file_logbook)
 
-            print("\nThank you for using this system. Goodbye!")
-            break
-        else:
-            print("\nInvalid user input. Please select a valid option.")
+            elif choice == "3":
+                logbook.logbook_module(file_logbook, file_library)
+
+            elif choice == "4":
+                print("\nThank you for using this system. Goodbye!")
+                break # BREAKS THE LOOP AND GOES TO 'finally' CODE BLOCK
+            else:
+                print("\nInvalid user input. Please select a valid option.")
+    finally:
+        # IF THE APP CRASHES (Pressing Ctrl+C or ending the program abruptly),
+        # OR PRESS [4] TO EXIT, THE FILES WILL BE SAFELY SAVED AND ENCRYPTED
+        print("\n[SYSTEM] Securing and encrypting databases before exit...")
+        encryption.encrypt_file("library.txt")
+        encryption.encrypt_file("borrow_list.txt")
+        encryption.encrypt_file("logbook.txt")
 
 main_interface() # CALLS THE MAIN INTERFACE FUNCTION

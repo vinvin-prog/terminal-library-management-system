@@ -4,3 +4,9 @@ __pycache__/
 
 # Ignore zip archives
 *.zip
+
+# Runtime-generated database files
+library.txt
+borrow_list.txt
+logbook.txt
+key.key
