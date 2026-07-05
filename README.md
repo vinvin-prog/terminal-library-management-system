@@ -1,4 +1,4 @@
-# 📚 Terminal-Based Library Management System
+# Terminal-Based Library Management System
 
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![Cryptography](https://img.shields.io/badge/Security-Fernet_Cryptography-black?style=for-the-badge&logo=letsencrypt)
@@ -8,7 +8,7 @@ A robust, secure, and interactive Command Line Interface (CLI) application for m
 
 ---
 
-## 📖 Table of Contents
+## Table of Contents
 
 - [About the Project](#about-the-project)
 - [Built With](#built-with)
@@ -22,7 +22,7 @@ A robust, secure, and interactive Command Line Interface (CLI) application for m
 
 ---
 
-## 📖 About the Project
+## About the Project
 
 This project is a comprehensive Python-based Terminal Library System designed to handle standard library operations securely. It was built to manage book inventories, track borrower deadlines (enforcing a strict **7-day borrowing policy**), and log all visitor transactions.
 
@@ -30,7 +30,7 @@ One of the core highlights of this system is its **data persistence and security
 
 ---
 
-## 🛠️ Built With
+## Built With
 
 - Python 3
 - Cryptography (Fernet)
@@ -39,7 +39,7 @@ One of the core highlights of this system is its **data persistence and security
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```text
 terminal-library-management-system/
@@ -59,7 +59,7 @@ terminal-library-management-system/
 
 ---
 
-## ✨ Features
+## Features
 
 - 🔐 **File Encryption** – Encrypts local database files when the application exits and decrypts them automatically upon launch.
 - 📦 **Inventory Management** – Add, edit, delete, search, and view books while preventing duplicate entries.
@@ -69,13 +69,13 @@ terminal-library-management-system/
 
 ---
 
-## 🖼️ Visuals & Demo
+## Visuals & Demo
 
-### 1. 📚 Library Inventory Management (CRUD)
+### 1. Library Inventory Management (CRUD)
 
 The library module supports complete **Create, Read, Update, and Delete (CRUD)** operations with built-in validation to prevent duplicate records and invalid user input.
 
-#### ➕ Add Books
+* **Add Books**
 
 Demonstrates adding one or more books to the library, automatically generating unique Book IDs, and validating publication dates (including leap year checks).
 
@@ -83,7 +83,7 @@ Demonstrates adding one or more books to the library, automatically generating u
 
 ![Add Book](readme-demos/add-book.gif)
 
-#### 🔍 View & Search Books
+* **View & Search Books**
 
 Demonstrates viewing the complete library inventory or searching for specific books using substring matching on titles and authors.
 
@@ -91,7 +91,7 @@ Demonstrates viewing the complete library inventory or searching for specific bo
 
 ![View and Search](readme-demos/view-search.gif)
 
-#### ✏️ Update Book Details
+* **Update Book Details**
 
 Demonstrates updating a selected book by its Book ID while validating the modified information before saving the changes.
 
@@ -99,7 +99,7 @@ Demonstrates updating a selected book by its Book ID while validating the modifi
 
 ![Update Book](readme-demos/update-book.gif)
 
-#### 🗑️ Delete Books
+* **Delete Books**
 
 Demonstrates locating a book, confirming its Book ID, and permanently removing it from the library inventory.
 
@@ -109,7 +109,7 @@ Demonstrates locating a book, confirming its Book ID, and permanently removing i
 
 ---
 
-### 2. 📖 Smart Borrowing System
+### 2. Smart Borrowing System
 
 Borrowing logic automatically limits users to a 7-day borrowing period, calculates the correct return date (including varying month lengths), and assigns a unique Borrow ID for every transaction.
 
@@ -119,7 +119,7 @@ Borrowing logic automatically limits users to a 7-day borrowing period, calculat
 
 ---
 
-### 3. 📋 Returning Books & Digital Logbook
+### 3. Returning Books & Digital Logbook
 
 When a borrower returns a book, the system validates the Borrow ID, updates the book's availability, and records the transaction in the digital logbook with the exact date and time.
 
@@ -129,7 +129,7 @@ When a borrower returns a book, the system validates the Borrow ID, updates the 
 
 ---
 
-### 4. 🔐 Secure Encrypted Storage
+### 4. Secure Encrypted Storage
 
 All database files are encrypted using Fernet symmetric encryption whenever the application exits. A `try...finally` block ensures files are encrypted even if the terminal closes unexpectedly.
 
@@ -139,7 +139,7 @@ All database files are encrypted using Fernet symmetric encryption whenever the 
 
 ---
 
-## 🚀 Installation
+## Installation
 
 ### Prerequisites
 
@@ -174,7 +174,7 @@ All database files are encrypted using Fernet symmetric encryption whenever the 
 
 ---
 
-## 💻 Usage
+## Usage
 
 After launching the application, you will be presented with the **Main Menu**.
 
@@ -188,17 +188,17 @@ After launching the application, you will be presented with the **Main Menu**.
 
 ---
 
-## 💡 Technical Highlights
+## Technical Highlights
 
-- **🔐 Secure File Storage** – Applied Fernet symmetric encryption to protect all local database files while the application is not running.
-- **🛡️ Crash Protection** – Implemented a `try...finally` block to ensure database files are always re-encrypted before the program terminates, even during unexpected crashes or forced exits.
-- **💾 Data Persistence** – Stored all records using local text files while maintaining data consistency across program executions.
-- **✅ Input Validation** – Implemented extensive validation for dates, duplicate records, Borrow IDs, and user input to improve system reliability.
-- **🐍 Python Data Structures** – Utilized dictionaries and lists to efficiently manage books, borrowers, and transaction records.
+- **Secure File Storage** – Applied Fernet symmetric encryption to protect all local database files while the application is not running.
+- **Crash Protection** – Implemented a `try...finally` block to ensure database files are always re-encrypted before the program terminates, even during unexpected crashes or forced exits.
+- **Data Persistence** – Stored all records using local text files while maintaining data consistency across program executions.
+- **Input Validation** – Implemented extensive validation for dates, duplicate records, Borrow IDs, and user input to improve system reliability.
+- **Python Data Structures** – Utilized dictionaries and lists to efficiently manage books, borrowers, and transaction records.
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! If you have suggestions for improving the project, feel free to:
 
